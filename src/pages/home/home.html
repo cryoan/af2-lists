@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="addSong()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  The world is your oyster.
+  <p>
+    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+  </p>
+  <ion-icon name="heart" color="danger"></ion-icon>
+  <!-- zone de test-->
+  <p> This is an example to login: </p>
+  <ion-list>
+
+  <ion-item>
+    <ion-label floating>Username</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Password</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+
+</ion-list>
+
+<div padding>
+  <button ion-button color="twitter" block>Sign In</button>
+</div>
+
+
+<p> This is an example to add a new song: </p>
+<ion-list>
+
+<ion-item>
+  <ion-label floating>Title</ion-label>
+  <ion-input type="text" [(ngModel)]="Title" name="Title"></ion-input>
+
+
+</ion-item>
+
+<ion-item>
+  <ion-label floating>Duration</ion-label>
+  <ion-input type="number"[(ngModel)]="Duration" name="Duration"></ion-input>
+</ion-item>
+
+</ion-list>
+
+<div padding>
+<button ion-button color="dark" block (click)="AddSong(Title,Duration)">Add Song</button>
+</div>
+
+
+<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+<!-- fin de zone de test-->
+
+    <ion-list>
+      <ion-card *ngFor="let song of songs | async" (click)="showOptions(song.$key, song.title)">
+        <ion-card-header color = "danger">
+          <ion-item>
+            <h2>{{song.title}}</h2>
+          </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{song.duration}}</p>
+        </ion-card-content>
+        <ion-row>
+          <ion-col>
+            <button primary clear small>
+              <ion-icon name="thumbs-up" color= "light"></ion-icon>
+              <div>12 Likes</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button primary clear small>
+              <ion-icon name="text"></ion-icon>
+              <div>4 Comments</div>
+            </button>
+          </ion-col>
+          <ion-col center text-center>
+            <ion-note>
+              11h ago
+            </ion-note>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-list>
+</ion-content>
